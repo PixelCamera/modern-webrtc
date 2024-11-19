@@ -9,13 +9,14 @@
 - State: Zustand
 - Backend: Node.js + Socket.io
 - WebRTC API
+- Package Manager: bun
 
 ## 开发计划
 
 ### MVP v0.1 - 基础视频通话 (当前阶段)
 - [x] 项目初始化和技术栈搭建
 - [ ] 基础 UI 组件库搭建
-  - [ ] Layout 组件
+  - [x] Layout 组件
   - [ ] Button 组件
   - [ ] Video 组件
   - [ ] Dialog 组件
@@ -117,21 +118,22 @@
 
 ### 环境要求
 - Node.js >= 18
-- pnpm >= 8.0
+- bun >= 1.0
 
 ### 本地开发
 
 ```bash
-pnpm install
+# 安装依赖
+bun install
 
 # 启动开发服务器
-pnpm dev
+bun dev
 
 # 构建
-pnpm build
+bun run build
 
 # 代码检查
-pnpm lint
+bun run lint
 ```
 
 ## 贡献指南
