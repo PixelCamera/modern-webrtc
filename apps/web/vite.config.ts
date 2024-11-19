@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react-swc'
 import { fileURLToPath } from 'node:url'
 import { dirname, resolve } from 'node:path'
 import type { UserConfig } from 'vite'
