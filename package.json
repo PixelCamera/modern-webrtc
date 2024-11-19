@@ -6,8 +6,16 @@
   "scripts": {
     "build": "tsc"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "clsx": "^2.1.1",
+    "react": "^18.3.1",
+    "tailwind-merge": "^2.5.4"
+  },
   "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@vitejs/plugin-react": "^4.3.3",
     "typescript": "^5.5.3"
   },
   "private": true
