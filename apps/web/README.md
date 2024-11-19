@@ -1,50 +1,145 @@
-# React + TypeScript + Vite
+# Modern WebRTC
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一个现代化的 WebRTC 视频通话应用。
 
-Currently, two official plugins are available:
+## 技术栈
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Frontend: React 18 + TypeScript + Vite
+- UI: TailwindCSS + Radix UI
+- State: Zustand
+- Backend: Node.js + Socket.io
+- WebRTC API
 
-## Expanding the ESLint configuration
+## 开发计划
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### MVP v0.1 - 基础视频通话 (当前阶段)
+- [x] 项目初始化和技术栈搭建
+- [ ] 基础 UI 组件库搭建
+  - [ ] Layout 组件
+  - [ ] Button 组件
+  - [ ] Video 组件
+  - [ ] Dialog 组件
+  - [ ] Form 组件
+- [ ] 获取本地摄像头画面
+  - [ ] 媒体设备权限处理
+  - [ ] 视频预览
+  - [ ] 错误提示
+- [ ] WebRTC 点对点连接
+  - [ ] RTCPeerConnection 设置
+  - [ ] ICE 处理
+  - [ ] 信令处理
+- [ ] 简单信令服务器
+  - [ ] Socket.io 服务端
+  - [ ] 基础信令消息处理
+  - [ ] 连接状态管理
 
-- Configure the top-level `parserOptions` property like this:
+### v0.2 - 基础房间系统
+- [ ] 创建/加入房间
+  - [ ] 房间创建表单
+  - [ ] 房间加入表单
+  - [ ] 房间 ID 生成
+  - [ ] 房间链接分享
+- [ ] 房间状态管理
+  - [ ] 用户列表
+  - [ ] 在线状态
+  - [ ] 权限控制
+- [ ] 错误处理
+  - [ ] 连接错误处理
+  - [ ] 设备错误处理
+  - [ ] 房间错误处理
+  - [ ] 重连机制
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### v0.3 - 基础控制功能
+- [ ] 音视频控制
+  - [ ] 麦克风开关
+  - [ ] 摄像头开关
+  - [ ] 设备选择
+  - [ ] 音量控制
+- [ ] 通话控制
+  - [ ] 挂断功能
+  - [ ] 重新连接
+  - [ ] 通话时长显示
+- [ ] 屏幕共享
+  - [ ] 共享整个屏幕
+  - [ ] 共享应用窗口
+  - [ ] 共享标签页
+
+### v0.4 - 聊天功能
+- [ ] 实时文字聊天
+  - [ ] 消息发送/接收
+  - [ ] 消息列表显示
+  - [ ] 表情支持
+  - [ ] 图片分享
+- [ ] 文件共享
+  - [ ] 小文件传输
+  - [ ] 传输进度显示
+  - [ ] 文件预览
+- [ ] 在线状态
+  - [ ] 用户状态显示
+  - [ ] 状态变更通知
+  - [ ] 已读状态
+
+### v0.5 - 多人会议支持
+- [ ] 多人视频
+  - [ ] Mesh 网络实现
+  - [ ] 网格布局
+  - [ ] 说话者检测
+  - [ ] 布局自适应
+- [ ] 带宽优化
+  - [ ] 视频质量自适应
+  - [ ] 网络状态监测
+  - [ ] 弱网优化
+- [ ] 会议控制
+  - [ ] 主持人功能
+  - [ ] 发言者管理
+  - [ ] 参会者管理
+  - [ ] 会议录制
+
+### v1.0 - 产品化
+- [ ] 用户系统
+  - [ ] 注册/登录
+  - [ ] 个人资料
+  - [ ] OAuth 集成
+- [ ] 会议预约
+  - [ ] 日历集成
+  - [ ] 邀请链接
+  - [ ] 会议提醒
+- [ ] 移动端适配
+  - [ ] 响应式设计
+  - [ ] 触摸优化
+  - [ ] PWA 支持
+- [ ] 数据持久化
+  - [ ] 聊天历史
+  - [ ] 会议记录
+  - [ ] 用户设置
+
+## 开发指南
+
+### 环境要求
+- Node.js >= 18
+- pnpm >= 8.0
+
+### 本地开发
+
+```bash
+pnpm install
+
+# 启动开发服务器
+pnpm dev
+
+# 构建
+pnpm build
+
+# 代码检查
+pnpm lint
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 贡献指南
+1. Fork 本仓库
+2. 创建你的特性分支 (git checkout -b feature/AmazingFeature)
+3. 提交你的更改 (git commit -m 'feat: Add some AmazingFeature')
+4. 推送到分支 (git push origin feature/AmazingFeature)
+5. 开启一个 Pull Request
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 许可证
+MIT
