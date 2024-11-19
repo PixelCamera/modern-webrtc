@@ -4,46 +4,68 @@
 
 ## 技术栈
 
-- Frontend: React 18 + TypeScript + Vite
-- UI: TailwindCSS + Radix UI
-- State: Zustand
-- Backend: Node.js + Socket.io
-- WebRTC API
-- Package Manager: bun
+- Frontend: 
+  - React 18 + TypeScript + Vite
+  - TailwindCSS + shadcn/ui + Radix UI
+  - Zustand (状态管理)
+  - React Query (数据获取)
+- Backend: 
+  - Node.js + Express
+  - Socket.io (实时通信)
+  - WebRTC API
+- 开发工具:
+  - TypeScript
+  - ESLint + Prettier
+  - Bun (包管理器)
+
+## 项目结构
+
+```bash
+apps/
+  ├── web/          # 前端应用
+  │   ├── src/
+  │   │   ├── components/  # UI 组件
+  │   │   ├── lib/         # 工具函数
+  │   │   └── App.tsx      # 根组件
+  │   └── ...
+  └── server/       # 后端服务
+      ├── src/
+      │   ├── controllers/ # 控制器
+      │   └── index.ts     # 入口文件
+      └── ...
+```
 
 ## 开发计划
 
 ### MVP v0.1 - 基础视频通话 (当前阶段)
 - [x] 项目初始化和技术栈搭建
-- [ ] 基础 UI 组件库搭建
-  - [x] Layout 组件
-  - [ ] Button 组件
-  - [ ] Video 组件
-  - [ ] Dialog 组件
-  - [ ] Form 组件
-- [ ] 获取本地摄像头画面
-  - [ ] 媒体设备权限处理
-  - [ ] 视频预览
-  - [ ] 错误提示
-- [ ] WebRTC 点对点连接
-  - [ ] RTCPeerConnection 设置
-  - [ ] ICE 处理
-  - [ ] 信令处理
-- [ ] 简单信令服务器
-  - [ ] Socket.io 服务端
-  - [ ] 基础信令消息处理
-  - [ ] 连接状态管理
+  - [x] 前端项目配置 (React + TypeScript + Vite)
+  - [x] UI 框架集成 (TailwindCSS + shadcn/ui)
+  - [x] 基础布局组件
+- [ ] 视频通话核心功能
+  - [ ] 获取本地摄像头画面
+    - [ ] 媒体设备权限处理
+    - [ ] 视频预览组件
+    - [ ] 错误提示
+  - [ ] WebRTC 点对点连接
+    - [ ] RTCPeerConnection 设置
+    - [ ] ICE 处理
+    - [ ] 信令处理
+  - [ ] 简单信令服务器
+    - [ ] Socket.io 服务端
+    - [ ] 基础信令消息处理
+    - [ ] 连接状态管理
 
 ### v0.2 - 基础房间系统
-- [ ] 创建/加入房间
-  - [ ] 房间创建表单
-  - [ ] 房间加入表单
-  - [ ] 房间 ID 生成
+- [ ] 用户界面
+  - [ ] 首页设计
+  - [ ] 房间页面设计
+  - [ ] 响应式布局
+- [ ] 房间功能
+  - [ ] 创建/加入房间表单
+  - [ ] 房间 ID 生成与验证
   - [ ] 房间链接分享
-- [ ] 房间状态管理
-  - [ ] 用户列表
-  - [ ] 在线状态
-  - [ ] 权限控制
+  - [ ] 用户列表与状态显示
 - [ ] 错误处理
   - [ ] 连接错误处理
   - [ ] 设备错误处理
@@ -118,22 +140,24 @@
 
 ### 环境要求
 - Node.js >= 18
-- bun >= 1.0
+- Bun >= 1.0
 
 ### 本地开发
 
 ```bash
-# 安装依赖
+# 安装前端依赖
+cd apps/web
 bun install
 
-# 启动开发服务器
+# 启动前端开发服务器
 bun dev
 
-# 构建
-bun run build
+# 安装后端依赖
+cd ../server
+bun install
 
-# 代码检查
-bun run lint
+# 启动后端服务器
+bun dev
 ```
 
 ## 贡献指南
