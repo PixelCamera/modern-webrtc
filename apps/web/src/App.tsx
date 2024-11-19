@@ -1,19 +1,20 @@
-import { Layout, LayoutContent, LayoutHeader } from "@/components/ui/layout"
+import { VideoPreview } from './components/VideoPreview';
+import { MediaControls } from './components/MediaControls';
+import { DeviceSelect } from './components/DeviceSelect';
 
 function App() {
   return (
-    <Layout>
-      <LayoutHeader>
-        <h1 className="text-xl font-bold">Modern WebRTC</h1>
-      </LayoutHeader>
-      <LayoutContent>
-        <div className="flex flex-col items-center justify-center space-y-4">
-          <h2 className="text-2xl font-bold">欢迎使用 Modern WebRTC</h2>
-          <p className="text-muted-foreground">一个现代化的 WebRTC 视频通话应用</p>
+    <div className="min-h-screen bg-gray-100 p-4">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-2xl font-bold mb-4">视频通话</h1>
+        <DeviceSelect />
+        <div className="aspect-video">
+          <VideoPreview className="w-full h-full object-cover" />
         </div>
-      </LayoutContent>
-    </Layout>
-  )
+        <MediaControls />
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
