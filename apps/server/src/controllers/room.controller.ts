@@ -2,15 +2,16 @@ import { Router, Request, Response } from 'express';
 import { RoomManager } from '../services/room.service';
 
 /**
- * 房间控制器类
- * 处理与房间相关的HTTP请求
+ * 房间控制器
+ * 负责处理房间相关的HTTP请求,包括创建房间、加入房间和获取参与者信息
  */
 export class RoomController {
+  /** Express路由实例 */
   public router: Router;
+  /** 房间管理器实例 */
   private roomManager: RoomManager;
 
   /**
-   * 构造函数
    * 初始化路由和房间管理器
    */
   constructor() {
@@ -20,8 +21,8 @@ export class RoomController {
   }
 
   /**
-   * 初始化路由
-   * 设置所有端点的处理函数
+   * 配置路由映射
+   * 将HTTP请求路径与对应的处理方法关联
    */
   private initializeRoutes() {
     this.router.post('/create', this.createRoom.bind(this));
@@ -30,9 +31,12 @@ export class RoomController {
   }
 
   /**
-   * 创建新房间
+   * 创建新的房间
+   * 
    * @param req - Express请求对象
    * @param res - Express响应对象
+   * @returns {Promise<void>} 返回包含新房间ID的JSON响应
+   * @throws 创建失败时返回500错误
    */
   async createRoom(req: Request, res: Response) {
     try {
@@ -46,9 +50,12 @@ export class RoomController {
   }
 
   /**
-   * 加入现有房间
-   * @param req - Express请求对象，包含roomId和participantId
+   * 将参与者加入指定房间
+   * 
+   * @param req - Express请求对象,包含roomId和participantId
    * @param res - Express响应对象
+   * @returns {Promise<void>} 返回包含房间信息和参与者列表的JSON响应
+   * @throws 参数验证失败返回400错误,加入失败返回500错误
    */
   async joinRoom(req: Request, res: Response) {
     try {
@@ -70,9 +77,12 @@ export class RoomController {
   }
 
   /**
-   * 获取房间内的所有参与者
-   * @param req - Express请求对象，包含roomId参数
+   * 获取指定房间的所有参与者
+   * 
+   * @param req - Express请求对象,包含roomId路径参数
    * @param res - Express响应对象
+   * @returns {Promise<void>} 返回包含参与者列表的JSON响应
+   * @throws 获取失败时返回500错误
    */
   async getRoomParticipants(req: Request, res: Response) {
     try {
