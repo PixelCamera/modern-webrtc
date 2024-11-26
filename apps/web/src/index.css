@@ -83,7 +83,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-input;
   }
   body {
     @apply bg-background text-foreground;
