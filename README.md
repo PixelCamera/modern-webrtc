@@ -8,15 +8,16 @@
   - React 18 + TypeScript + Vite
   - TailwindCSS + shadcn/ui + Radix UI
   - Zustand (状态管理)
-  - React Query (数据获取)
+  - Socket.io Client (实时通信)
 - Backend: 
-  - Node.js + Express
-  - Socket.io (实时通信)
-  - WebRTC API
+  - Node.js + Express + TypeScript
+  - Socket.io (WebSocket服务器)
+  - HTTPS (安全通信)
 - 开发工具:
   - TypeScript
   - ESLint + Prettier
   - Bun (包管理器)
+  - tsx (TypeScript 执行器)
 
 ## 项目结构
 
@@ -25,13 +26,20 @@ apps/
   ├── web/          # 前端应用
   │   ├── src/
   │   │   ├── components/  # UI 组件
-  │   │   ├── lib/         # 工具函数
-  │   │   └── App.tsx      # 根组件
+  │   │   │   ├── ui/     # 基础 UI 组件
+  │   │   │   └── ...     # 业务组件
+  │   │   ├── lib/        # 工具函数和服务
+  │   │   │   ├── stores/ # Zustand 状态管理
+  │   │   │   ├── utils/  # 通用工具函数
+  │   │   │   └── ...     # 其他服务
+  │   │   └── types/      # TypeScript 类型定义
   │   └── ...
   └── server/       # 后端服务
       ├── src/
-      │   ├── controllers/ # 控制器
-      │   └── index.ts     # 入口文件
+      │   ├── services/   # 业务服务
+      │   ├── types/      # 类型定义
+      │   └── index.ts    # 入口文件
+      ├── cert/           # SSL 证书
       └── ...
 ```
 
@@ -44,17 +52,17 @@ apps/
   - [x] 基础布局组件
 - [x] 视频通话核心功能
   - [x] 获取本地摄像头画面
-    - [x] 媒体设备权限处理
-    - [x] 视频预览组件
-    - [x] 错误提示
-  - [ ] WebRTC 点对点连接
-    - [ ] RTCPeerConnection 设置
-    - [ ] ICE 处理
-    - [ ] 信令处理
+    - [x] 媒体设备权限处理 (已实现 media-utils.ts)
+    - [x] 视频预览组件 (已实现 VideoPreview 组件)
+    - [x] 错误提示与日志记录 (已实现 logger.ts)
+  - [x] WebRTC 点对点连接
+    - [x] RTCPeerConnection 设置 (已实现 webrtc.ts)
+    - [x] ICE 处理 (已实现 handleIceCandidate)
+    - [x] 信令处理 (已实现 handleOffer/handleAnswer)
   - [x] 简单信令服务器
-    - [x] Socket.io 服务端
-    - [ ] 基础信令消息处理
-    - [ ] 连接状态管理
+    - [x] Socket.io 服务端 (已实现 socket.service.ts)
+    - [x] 基础信令消息处理 (已实现 offer/answer/ice-candidate)
+    - [x] 连接状态管理 (已实现 connectionStore.ts)
 
 ### v0.2 - 基础房间系统
 - [ ] 用户界面
