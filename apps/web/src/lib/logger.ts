@@ -1,10 +1,19 @@
-/** 日志级别类型定义 */
+/**
+ * 日志级别的类型定义
+ * 支持debug、info、warn、error四个级别
+ */
 type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 
-/** 日志参数类型定义 */
+/**
+ * 日志参数的类型定义
+ * 支持基础类型、Error对象和普通对象
+ */
 type LogArg = string | number | boolean | null | undefined | Error | Record<string, unknown>;
 
-/** 不同日志级别对应的样式配置接口 */
+/**
+ * 日志样式配置接口
+ * 为每个日志级别定义对应的CSS样式
+ */
 interface LogStyles {
   readonly debug: string;
   readonly info: string;
@@ -14,9 +23,10 @@ interface LogStyles {
 
 /**
  * 日志管理器类
- * 使用单例模式确保整个应用只有一个日志实例
+ * 采用单例模式实现的日志系统
  */
 class Logger {
+  /** 单例实例 */
   private static instance: Logger | null = null;
 
   /** 日志输出的颜色样式配置 */
@@ -28,13 +38,11 @@ class Logger {
   });
 
   /** 私有构造函数，防止外部直接实例化 */
-  private constructor() {
-    // 私有构造函数
-  }
+  private constructor() {}
 
   /**
    * 获取Logger单例实例
-   * @returns Logger实例
+   * @returns {Logger} Logger实例
    */
   public static getInstance(): Logger {
     if (Logger.instance === null) {
@@ -45,10 +53,11 @@ class Logger {
 
   /**
    * 格式化日志消息
-   * @param level 日志级别
-   * @param context 日志上下文
-   * @param message 日志消息
-   * @returns 格式化后的日志字符串
+   * @param {LogLevel} level - 日志级别
+   * @param {string} context - 日志上下文
+   * @param {string} message - 日志消息
+   * @returns {string} 格式化后的日志字符串
+   * @throws {Error} 当context或message为空时抛出错误
    */
   private formatMessage(level: LogLevel, context: string, message: string): string {
     if (!context || !message) {
@@ -60,10 +69,10 @@ class Logger {
 
   /**
    * 输出调试级别日志
-   * @param context 日志上下文
-   * @param message 日志消息
-   * @param args 额外参数
-   * @throws {Error} 当context或message为空时
+   * @param {string} context - 日志上下文
+   * @param {string} message - 日志消息
+   * @param {...LogArg} args - 额外参数
+   * @throws {Error} 当context或message为空时抛出错误
    */
   public debug(context: string, message: string, ...args: LogArg[]): void {
     console.log(
@@ -75,10 +84,10 @@ class Logger {
 
   /**
    * 输出信息级别日志
-   * @param context 日志上下文
-   * @param message 日志消息
-   * @param args 额外参数
-   * @throws {Error} 当context或message为空时
+   * @param {string} context - 日志上下文
+   * @param {string} message - 日志消息
+   * @param {...LogArg} args - 额外参数
+   * @throws {Error} 当context或message为空时抛出错误
    */
   public info(context: string, message: string, ...args: LogArg[]): void {
     console.log(
@@ -90,10 +99,10 @@ class Logger {
 
   /**
    * 输出警告级别日志
-   * @param context 日志上下文
-   * @param message 日志消息
-   * @param args 额外参数
-   * @throws {Error} 当context或message为空时
+   * @param {string} context - 日志上下文
+   * @param {string} message - 日志消息
+   * @param {...LogArg} args - 额外参数
+   * @throws {Error} 当context或message为空时抛出错误
    */
   public warn(context: string, message: string, ...args: LogArg[]): void {
     console.warn(
@@ -105,10 +114,10 @@ class Logger {
 
   /**
    * 输出错误级别日志
-   * @param context 日志上下文
-   * @param message 日志消息
-   * @param args 额外参数
-   * @throws {Error} 当context或message为空时
+   * @param {string} context - 日志上下文
+   * @param {string} message - 日志消息
+   * @param {...LogArg} args - 额外参数
+   * @throws {Error} 当context或message为空时抛出错误
    */
   public error(context: string, message: string, ...args: LogArg[]): void {
     console.error(
@@ -123,4 +132,4 @@ class Logger {
 export const logger = Logger.getInstance();
 
 // 防止导出的实例被修改
-Object.freeze(logger); 
+Object.freeze(logger);
